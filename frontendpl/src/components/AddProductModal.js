@@ -106,58 +106,74 @@ const AddProductModal = ({ isOpen, onClose }) => {
   };
 
   return (
-        <Modal show={isOpen} onHide={onClose} centered>
-          <Modal.Header closeButton>
-            <Modal.Title>Add Product Combination</Modal.Title>
-          </Modal.Header>
-    
-          <Modal.Body>
-            {/* Product Selection */}
-            <Form.Group className="mb-3">
-              <Form.Label>Select Product</Form.Label>
-              <Form.Select value={productId} onChange={(e) => setProductId(e.target.value)}>
-                <option value="">Select Product</option>
-                {products.map((product) => (
-                  <option key={product._id} value={product._id}>{product.name} ({productCounts[product.name] || 0})</option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-    
-            {/* Material Selection */}
-            <Form.Group className="mb-3">
-              <Form.Label>Select Material</Form.Label>
-              <Form.Select value={materialId} onChange={(e) => setMaterialId(e.target.value)}>
-                <option value="">Select Material</option>
-                {materials.map((material) => (
-                  <option key={material._id} value={material._id}>{material.name} ({materialCounts[material.name] || 0})</option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-    
-            {/* Grades Selection */}
-            <Form.Group className="mb-3">
-              <Form.Label>Select Grades</Form.Label>
-              <div className="d-flex flex-wrap">
-                {grades.map((grade) => (
-                  <Form.Check 
-                    key={grade._id} 
-                    type="checkbox"
-                    label={grade.name}
-                    value={grade._id}
-                    checked={selectedGrades.includes(grade._id)}
-                    onChange={() => handleGradeSelection(grade._id)}
-                    className="me-3"
-                  />
-                ))}
-              </div>
-            </Form.Group>
-          </Modal.Body>
-    
-          <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>Close</Button>
-            <Button variant="primary" onClick={handleAddProduct}>Add Product</Button>
-          </Modal.Footer>
-        </Modal>
+    <Modal show={isOpen} onHide={onClose} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Add Product Combination</Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <div className="row">
+      {/* Product Selection */}
+      <div className="col-md-4">
+        <h6>Select Product</h6>
+        <div className="d-flex flex-wrap">
+          {products.map((product) => (
+            <div
+              key={product._id}
+              className={`card m-1 p-2 ${productId === product._id ? "border-primary" : ""}`}
+              style={{ cursor: "pointer", minWidth: "120px", textAlign: "center" }}
+              onClick={() => setProductId(product._id)}
+            >
+              {product.name} ({productCounts[product.name] || 0})
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Material Selection */}
+      <div className="col-md-4">
+        <h6>Select Material</h6>
+        <div className="d-flex flex-wrap">
+          {materials.map((material) => (
+            <div
+              key={material._id}
+              className={`card m-1 p-2 ${materialId === material._id ? "border-primary" : ""}`}
+              style={{ cursor: "pointer", minWidth: "120px", textAlign: "center" }}
+              onClick={() => setMaterialId(material._id)}
+            >
+              {material.name} ({materialCounts[material.name] || 0})
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Grades Selection */}
+      <div className="col-md-4">
+        <h6>Select Grades</h6>
+        <div className="d-flex flex-wrap">
+          {grades.map((grade) => (
+            <Form.Check
+              key={grade._id}
+              type="checkbox"
+              label={grade.name}
+              value={grade._id}
+              checked={selectedGrades.includes(grade._id)}
+              onChange={() => handleGradeSelection(grade._id)}
+              className="me-3"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </Modal.Body>
+
+  <Modal.Footer>
+    <Button variant="secondary" onClick={onClose}>Close</Button>
+    <Button variant="primary" onClick={handleAddProduct}>Add Product</Button>
+  </Modal.Footer>
+</Modal>
+
+  
       );
     };
     

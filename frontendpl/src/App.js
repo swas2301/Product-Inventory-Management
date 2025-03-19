@@ -212,8 +212,13 @@ const App = () => {
   
 
   return (
+    
+        
+    
     <div className="container py-4">
-      
+      <header>
+        <h1>Product Inventory Management</h1>
+    </header>
       {/* Search and Add Button */}
       <div className="d-flex justify-content-between mb-3">
       <input
@@ -347,16 +352,17 @@ const App = () => {
               {/* Show Expanded Row Only for the Selected Product */}
               {editRowId === product._id && (
                 <tr>
-                  <td colSpan="4">
+                  <td colSpan="9">
                     <div className="p-3 border bg-light">
+                      <div className="row">
                       {/* Material Selection */}
                {!hideMaterial && (
-               <div className="mb-2">
+               <div className="col-md-4">
                  <label className="form-label">Material</label>
                    <select
                     className="form-control"
                     name="materialId"
-                    value={editedProduct.materialId}
+                    defaultValue=""
                     onChange={(e) => setEditedProduct({ ...editedProduct, materialId: e.target.value })}
                     >
                    {materials.map((material) => (
@@ -368,56 +374,59 @@ const App = () => {
                </div>
                       )}
 
-                      <div className="mb-2">
+                     <div className="col-md-4">
                         <label className="form-label">Shape</label>
                         <input
                           type="text"
                           className="form-control"
                           name="shape"
-                          value={editedProduct.shape || ""}
+                          defaultValue=""
                           onChange={handleChange}
                         />
                       </div>
 
-                      <div className="mb-2">
+                      <div className="col-md-4">
                         <label className="form-label">Length</label>
                         <input
                           type="text"
                           className="form-control"
                           name="length"
-                          value={editedProduct.length || ""}
+                          defaultValue=""
                           onChange={handleChange}
                         />
                       </div>
-
-                      <div className="mb-2">
+                      </div>
+                      <div className="row mt-3">
+                      <div className="col-md-4">
                         <label className="form-label">Thickness</label>
                         <input
                           type="text"
                           className="form-control"
                           name="thickness"
-                          value={editedProduct.thickness || ""}
+                          defaultValue=""
                           onChange={handleChange}
                         />
                       </div>
 
-                      <div className="mb-2">
+                      <div className="col-md-4">
                         <label className="form-label">Price</label>
                         <input
                           type="number"
                           className="form-control"
                           name="price"
-                          value={editedProduct.price || ""}
+                          defaultValue=""
                           onChange={handleChange}
                         />
                       </div>
-
+                      <div className="col-md-4 d-flex align-items-end">
                       <button className="btn btn-success me-2" onClick={handleSave}>
                         Save
                       </button>
                       <button className="btn btn-secondary" onClick={() => setEditRowId(null)}>
                         Cancel
                       </button>
+                    </div>
+                    </div>
                     </div>
                   </td>
                 </tr>
