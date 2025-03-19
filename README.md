@@ -22,7 +22,7 @@ Product Inventory Management is a full-stack web application that allows users t
 
 ### Clone the Repository  
 ```bash
-git clone https://github.com/your-username/Product-Inventory-Management.git
+git clone https://github.com/swas2301/Product-Inventory-Management.git
 cd Product-Inventory-Management
 cd backend
 npm install
